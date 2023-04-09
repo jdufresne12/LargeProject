@@ -10,12 +10,12 @@ npx create-expo-app@latest --example with-router ./
 
 ## 🚀 Additional Dependencies:
 
-# Expo-font: Custom fonts, axios: api requests, react-native-dotenv: enable environment variables
+#### Expo-font: Custom fonts, axios: api requests, react-native-dotenv: enable environment variables
 ```sh
 npm install expo-font axios react-native-dotenv
 ```
 
-# latest react-native for expo
+#### latest react-native for expo
 ```sh
 npm install expo-font axios react-native-dotenv
 ```
