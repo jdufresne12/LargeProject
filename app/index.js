@@ -1,12 +1,6 @@
-import { View, Text } from "react-native";
-
-const Home = () => {
-  return (
-    <View>
-      <Text>Welcome to our homepage</Text>
-      <Text>Testing testing</Text>
-    </View>
-  );
-};
-
-export default Home;
+import LoginScreen from "./LoginScreen";
+import emailValidator from "./helpers/emailValidator";
+import passwordValidator from "./helpers/passwordValidator";
+export default LoginScreen;
+export { emailValidator, passwordValidator };
+//# sourceMappingURL=index.js.map
