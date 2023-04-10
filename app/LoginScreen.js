@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -24,39 +25,41 @@ const LoginScreen = ({ onLoginPress, onSignupPress, onForgotPasswordPress }) => 
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.textInputContainer}>
-        <TextInput
-          placeholder="Email"
-          onChangeText={setEmail}
-          autoCapitalize="none"
-        />
-        <TextInput
-          placeholder="Password"
-          secureTextEntry={!isPasswordVisible}
-          onChangeText={setPassword}
-          autoCapitalize="none"
-          onIconPress={handleEyePress}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.loginButtonStyle}
-        onPress={() => onLoginPress(email, password)}
-      >
-        <Text style={styles.loginTextStyle}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.signupStyle}
-        onPress={() => navigation.navigate('SignUp')}
-      >
-        <Text style={styles.signupTextStyle}>Create an account</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.signupStyle}
-        onPress={onForgotPasswordPress}
-      >
-        <Text style={styles.signupTextStyle}>Forgot Password?</Text>
-      </TouchableOpacity>
+      <ScrollView>
+        <StatusBar barStyle="dark-content" />
+        <View style={styles.textInputContainer}>
+          <TextInput
+            placeholder="Email"
+            onChangeText={setEmail}
+            autoCapitalize="none"
+          />
+          <TextInput
+            placeholder="Password"
+            secureTextEntry={!isPasswordVisible}
+            onChangeText={setPassword}
+            autoCapitalize="none"
+            onIconPress={handleEyePress}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.loginButtonStyle}
+          onPress={() => onLoginPress(email, password)}
+        >
+          <Text style={styles.loginTextStyle}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.signupStyle}
+          onPress={() => navigation.navigate('SignUp')}
+        >
+          <Text style={styles.signupTextStyle}>Create an account</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.signupStyle}
+          onPress={() => navigation.navigate('GameMenu')}
+        >
+          <Text style={styles.signupTextStyle}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </SafeAreaView>
   );
 };
