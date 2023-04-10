@@ -1,6 +1,9 @@
-import LoginScreen from "./LoginScreen";
-import emailValidator from "./helpers/emailValidator";
-import passwordValidator from "./helpers/passwordValidator";
-export default LoginScreen;
-export { emailValidator, passwordValidator };
-//# sourceMappingURL=index.js.map
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import AppNavigator from "./AppNavigator";
+
+const index = () => {
+  return <AppNavigator />;
+};
+
+export default index;
