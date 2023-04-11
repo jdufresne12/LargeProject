@@ -1,24 +1,51 @@
-# Expo Router Example
+# How to run
 
-Use [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
-
-## 🚀 Created React-App using:
+## From terminal, Download dependencies with 
 
 ```sh
-npx create-expo-app@latest --example with-router ./
+npm i
 ```
 
-## 🚀 Additional Dependencies:
+## 🚀 Run app with:
 
-#### Expo-font: custom fonts, Axios: apirequests, React-native-dotenv: enable environment variables
 ```sh
-npm install expo-font axios react-native-dotenv
+npm start
 ```
 
-#### latest react-native for expo
+## 🚀 Download expo go on you phone and scan QR code or open on web:
+### Example
 ```sh
-npm install expo-font axios react-native-dotenv
+Starting Metro Bundler
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▀▄█▀ ▀█ ▄█ ▄▄▄▄▄ █
+█ █   █ █▄   ▄██▀ █ █   █ █
+█ █▄▄▄█ █ ▀█▀█▄█ ██ █▄▄▄█ █
+█▄▄▄▄▄▄▄█ ▀▄█ █ █▄█▄▄▄▄▄▄▄█
+█ ▄█ █▀▄▄▀█ ▀█▄▀▄▄▀  ▄▀▄▄▀█
+█  ▀▀██▄▀▄▄▄██▀ ▀▄▄▀ ▀▀█▄▄█
+███▀█ ▄▄█▀█▀▀ ▄ █▀█ ▄█ ██▀█
+█▄▀▀▄▀█▄▄▀▀▄█ ▀▀█ ▄▄ ▀▀██▄█
+█▄▄█▄▄▄▄▄▀ █▄▄█▄  ▄▄▄ █ ▄ █
+█ ▄▄▄▄▄ █▄▄█▀▄█   █▄█  ▀▄▄█
+█ █   █ █▀ ▄▄█ ▀▀▄ ▄▄ █▀▄██
+█ █▄▄▄█ █▀ ██▄  █  █▄  ▄█▄█
+█▄▄▄▄▄▄▄█▄▄▄██▄▄█▄███▄▄█▄▄█
+
+› Metro waiting on exp://192.168.1.127:19000
+› Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Web is waiting on http://localhost:19000
+
+› Press a │ open Android
+› Press w │ open web
+
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+
+› Press ? │ show all commands
 ```
+
 
 ## 📝 Notes
 - [Expo Router: Docs](https://expo.github.io/router)
