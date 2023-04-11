@@ -26,6 +26,8 @@ const LoginScreen = ({ onLoginPress, onSignupPress, onForgotPasswordPress }) => 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
+        <Text style={styles.welcomeMessage1}>Welcome to our app!</Text>
+        <Text style={styles.welcomeMessage2}>Login or Sign-up</Text>
         <StatusBar barStyle="dark-content" />
         <View style={styles.textInputContainer}>
           <TextInput
