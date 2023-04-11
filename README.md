@@ -12,7 +12,7 @@ npm i
 npm start
 ```
 
-## 🚀 Download expo go on you phone and scan QR code or open on web:
+## 🚀 Download expo go on your phone and scan QR code or open on web with localhost:
 ### Example
 ```sh
 Starting Metro Bundler
