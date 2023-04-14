@@ -1,9 +1,10 @@
 import { Dimensions, StyleSheet, } from "react-native";
+import { COLORS, SIZES } from '../constants/theme'
 const { width: ScreenWidth } = Dimensions.get("screen");
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#f7f7f7",
+        backgroundColor: COLORS.bg,
     },
     logoImageStyle: {
         width: 200,
@@ -11,21 +12,21 @@ export default StyleSheet.create({
         alignSelf: "center",
     },
     welcomeMessage1: {
-        marginTop: 40, 
+        marginTop: 100, 
         textAlign: "center",
-        fontSize: "40",
+        fontSize: 40,
         fontWeight: "bold",
-        color: "#25a9e2",
+        color: COLORS.primary,
     },
     welcomeMessage2: {
-        marginTop: 10, 
+        marginTop: 20, 
         textAlign: "center",
-        fontSize: "25",
+        fontSize: 25,
         fontWeight: "bold",
-        color: "#25a9e2",
+        color: COLORS.secondary,
     },
     textInputContainer: {
-        marginTop: 40,
+        marginTop: 60,
         alignItems: "center",
         justifyContent: "center",
         gap: 20,
@@ -38,12 +39,12 @@ export default StyleSheet.create({
     loginButtonStyle: {
         height: 40,
         width: ScreenWidth * 0.9,
-        backgroundColor: "#25a9e2",
+        backgroundColor: COLORS.primary,
         borderRadius: 8,
         alignItems: "center",
         justifyContent: "center",
         alignSelf: "center",
-        marginTop: 32,
+        marginTop: 40,
         elevation: 5,
         shadowRadius: 8,
         shadowOpacity: 0.3,
@@ -54,7 +55,7 @@ export default StyleSheet.create({
         },
     },
     loginTextStyle: {
-        color: "#fff",
+        color: COLORS.white,
         fontSize: 16,
         fontWeight: "bold",
     },
@@ -64,7 +65,7 @@ export default StyleSheet.create({
         justifyContent: "center",
     },
     signupTextStyle: {
-        color: "#acabb0",
+        color: COLORS.secondary,
     },
     dividerStyle: {
         height: 0.5,
@@ -79,18 +80,6 @@ export default StyleSheet.create({
         marginTop: 16,
         alignItems: "center",
         justifyContent: "center",
-    },
-    facebookSocialButtonTextStyle: {
-        color: "#4267B2",
-    },
-    twitterSocialButtonTextStyle: {
-        color: "#56bfe8",
-    },
-    discordSocialButtonTextStyle: {
-        color: "#5865F2",
-    },
-    socialButtonStyle: {
-        marginTop: 16,
     },
     eyeIconContainer: {
         right: 16,
