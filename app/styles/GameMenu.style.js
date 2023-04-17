@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { COLORS, SIZES } from "../constants/theme.js";
 const { width: ScreenWidth } = Dimensions.get("screen");
 export default StyleSheet.create({
@@ -6,20 +6,53 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.bg,
     },
-    earth: {
-        display: 'flex',
-        justifyContent: "center",
-        marginTop: 100,
+    textContainer: {
+        backgroundColor: COLORS.bg,
+        paddingHorizontal: 40,
+        paddingTop: 40,
+        zIndex: 2,
     },
-    menuContainer:{
+    animationContainer: {
+        width: "100%",
+        height: 200, // Adjust this value to change the height of the container
+        justifyContent: "center", // Add this to center the animation vertically
+        alignItems: "center", // Add this to center the animation horizontally
+    },
+    earth: {
+        position: "relative",
+        top: "50%", // Center the Earth component vertically
+        left: "50%", // Center the Earth component horizontally
+        transform: [
+            { translateY: -0.5 * 10 }, // Adjust the Earth component's vertical position based on its size
+            { translateX: -0.5 * 10 }, // Adjust the Earth component's horizontal position based on its size
+        ],
+        zIndex: 1,
+    },
+    animationWrapper: {
+        width: "100%", // Increase the width to stretch the animation
+        height: "300%", // Increase the height to stretch the animation
+        overflow: "hidden",
+    },
+    animation: {
+        display: "flex",
+        justifyContent: "center",
+        width: "100%",
+        height: "100%",
+        zIndex: -1,
+        position: "absolute",
+        top: 0,
+    },
+    menuContainer: {
         flex: 1,
         marginTop: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 40
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 40,
+        paddingTop: 150,
+        zIndex: 1
     },
-    row:{
-        flexDirection: 'row',
+    row: {
+        flexDirection: "row",
         marginBottom: 20,
     },
     menuChoiceBtn: {
@@ -46,9 +79,41 @@ export default StyleSheet.create({
         fontSize: 40,
         textAlign: "center",
         color: COLORS.primary,
-        marginTop: 20
+        marginTop: 20,
     },
     svgBuffer: {
         marginTop: 40,
-    }
+    },
+    dividerContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignSelf: "center",
+        width: ScreenWidth,
+        paddingBottom: 75,
+        zIndex: 2, // Add this line
+    },
+    divider: {
+        width: ScreenWidth * 0.75, // Set the width of each divider to half of the screen width
+        height: 25, // Adjust this value to change the height of the dividers
+        backgroundColor: COLORS.primary, // Change this to the desired divider color
+        zIndex: 1,
+    },
+    dividerLeft: {
+        transform: [
+            { translateY: 30 }, // Move the left divider down by half of the height
+            { skewX: "-45deg" }, // Rotate the left divider
+            { rotate: "10deg" },
+            { scaleX: 1.25 },
+        ],
+        zIndex: 2,
+    },
+    dividerRight: {
+        transform: [
+            { translateY: 30 }, // Move the right divider down by half of the height
+            { skewX: "45deg" }, // Rotate the right divider
+            { rotate: "-10deg" },
+            { scaleX: 1.25 },
+        ],
+        zIndex: 2,
+    },
 });

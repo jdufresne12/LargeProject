@@ -1,10 +1,3 @@
-// import LoginScreen from "./LoginScreen";
-// import emailValidator from "./helpers/emailValidator";
-// import passwordValidator from "./helpers/passwordValidator";
-// export default LoginScreen;
-// export { emailValidator, passwordValidator };
-//# sourceMappingURL=index.js.map
-
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useState } from "react";
