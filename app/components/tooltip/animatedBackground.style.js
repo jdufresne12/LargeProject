@@ -4,9 +4,10 @@ const styles = StyleSheet.create({
     
     background: {
         position: 'absolute',
-        top: 50,
+        width: 2400,
+        height: 1200,
+        top: 0,
         opacity: 0.2,
-        alignSelf: "center",
         transform: [
           {
             translateX: 0,
@@ -14,7 +15,8 @@ const styles = StyleSheet.create({
           {
             translateY: 0,
           },
-        ],      
+        ], 
+        overflow: ""     
       }, 
   });
 

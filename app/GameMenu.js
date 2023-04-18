@@ -13,6 +13,10 @@ import { COLORS, SIZES } from "./constants/theme";
 import styles from "./styles/GameMenu.style";
 import Background from "./components/tooltip/animatedBackground";
 import Earth from "./assests/icons/Earth";
+import { Dimensions, StyleSheet } from "react-native";
+import Svg, { Polygon, Path } from "react-native-svg";
+const { width: ScreenWidth } = Dimensions.get("screen");
+import Divider from "./assests/icons/divider"
 
 
 const GameMenu = () => {
@@ -21,32 +25,35 @@ const GameMenu = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-                <View style={styles.textContainer}>
+                {/* <View style={styles.textContainer}>
                     <Text style={styles.subjectPrompt}>
                         What are we going to test you on today?
                     </Text>
-                </View>
+                </View> */}
                 <View style={styles.dividerContainer}>
                     <Background />
                 </View>
                 <View style={styles.earth}>
                     <Earth />
                 </View>
+                <View>
+                    <Divider />
+                </View>
                 <View style={styles.menuContainer}>
                     <View style={styles.row}>
                         <TouchableOpacity style={styles.menuChoiceBtn}>
-                            <Text>Subject1</Text>
+                            <Text>Math</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.menuChoiceBtn}>
-                            <Text>Subject2</Text>
+                            <Text>Sports</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.row}>
                         <TouchableOpacity style={styles.menuChoiceBtn}>
-                            <Text>Subject3</Text>
+                            <Text>Music</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.menuChoiceBtn}>
-                            <Text>Subject4</Text>
+                            <Text>Geography</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

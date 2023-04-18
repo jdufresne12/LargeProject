@@ -20,7 +20,8 @@ export default StyleSheet.create({
     },
     earth: {
        flex: 1,
-       alignSelf: 'center'
+       alignSelf: 'center',
+       marginBottom: -70
     },
     animationWrapper: {
         width: "100%", // Increase the width to stretch the animation
@@ -40,8 +41,7 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: 40,
-        paddingTop: 15,
+        marginTop: 30,
         zIndex: 1
     },
     row: {
@@ -82,31 +82,10 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
         width: ScreenWidth,
-        paddingBottom: 75,
-        zIndex: 2, // Add this line
-    },
+        marginBottom: 35,
+        zIndex: -1,
+      },
     divider: {
-        width: ScreenWidth * 0.75, // Set the width of each divider to half of the screen width
         height: 25, // Adjust this value to change the height of the dividers
-        backgroundColor: COLORS.primary, // Change this to the desired divider color
-        zIndex: 1,
-    },
-    dividerLeft: {
-        transform: [
-            { translateY: 30 }, // Move the left divider down by half of the height
-            { skewX: "45deg" }, // Rotate the left divider
-            { rotate: "30deg" },
-            { scaleX: 1 },
-        ],
-        zIndex: 2,
-    },
-    dividerRight: {
-        transform: [
-            { translateY: 30 }, // Move the right divider down by half of the height
-            { skewX: "-45deg" }, // Rotate the right divider
-            { rotate: "-30deg" },
-            { scaleX: 1 },
-        ],
-        zIndex: 2,
-    },
+      },
 });
