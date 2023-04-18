@@ -3,9 +3,9 @@ import { Path, Circle, Text as SvgText, TextPath, TSpan, G, Svg } from 'react-na
 import { COLORS } from "../../constants/theme";
 const Earth = () => (
   <Svg
-    width={400}
-    height={250}
-    viewBox="0 30 400 600"
+    width={200}
+    height={300}
+    viewBox="0 0 500 600"
     id="earth"
     xmlns="http://www.w3.org/2000/svg"
   >

@@ -1,15 +1,14 @@
 import React from "react";
 import { View, StyleSheet, Platform } from "react-native";
-import LottieReactNative from "lottie-react-native";
-import LottieReactWeb from "lottie-react-web";
+// import LottieWeb from "lottie-react";
+// import LottieView from 'lottie-react-native';
 
-import animationData from "./assests/animation.json";
 
 const LottieAnimation = ({ style }) => {
     return (
         <View style={[style.container, style]}>
             {Platform.OS === "web" ? (
-                <LottieReactWeb
+                <LottieWeb
                     options={{
                         animationData: animationData,
                         loop: true,
@@ -23,8 +22,8 @@ const LottieAnimation = ({ style }) => {
                     background="transparent" // This will set the background to transparent
                 />
             ) : (
-                <LottieReactNative
-                    source={animationData}
+                <LottieNative
+                    source={require("./assests/animation.json")}
                     loop
                     autoPlay
                     resizeMode="cover"

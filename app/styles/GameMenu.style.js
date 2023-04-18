@@ -9,7 +9,7 @@ export default StyleSheet.create({
     textContainer: {
         backgroundColor: COLORS.bg,
         paddingHorizontal: 40,
-        paddingTop: 40,
+        paddingTop: 30,
         zIndex: 2,
     },
     animationContainer: {
@@ -19,14 +19,8 @@ export default StyleSheet.create({
         alignItems: "center", // Add this to center the animation horizontally
     },
     earth: {
-        position: "relative",
-        top: "50%", // Center the Earth component vertically
-        left: "50%", // Center the Earth component horizontally
-        transform: [
-            { translateY: -0.5 * 10 }, // Adjust the Earth component's vertical position based on its size
-            { translateX: -0.5 * 10 }, // Adjust the Earth component's horizontal position based on its size
-        ],
-        zIndex: 1,
+       flex: 1,
+       alignSelf: 'center'
     },
     animationWrapper: {
         width: "100%", // Increase the width to stretch the animation
@@ -44,11 +38,10 @@ export default StyleSheet.create({
     },
     menuContainer: {
         flex: 1,
-        marginTop: 40,
         justifyContent: "center",
         alignItems: "center",
         padding: 40,
-        paddingTop: 150,
+        paddingTop: 15,
         zIndex: 1
     },
     row: {
@@ -101,18 +94,18 @@ export default StyleSheet.create({
     dividerLeft: {
         transform: [
             { translateY: 30 }, // Move the left divider down by half of the height
-            { skewX: "-45deg" }, // Rotate the left divider
-            { rotate: "10deg" },
-            { scaleX: 1.25 },
+            { skewX: "45deg" }, // Rotate the left divider
+            { rotate: "30deg" },
+            { scaleX: 1 },
         ],
         zIndex: 2,
     },
     dividerRight: {
         transform: [
             { translateY: 30 }, // Move the right divider down by half of the height
-            { skewX: "45deg" }, // Rotate the right divider
-            { rotate: "-10deg" },
-            { scaleX: 1.25 },
+            { skewX: "-45deg" }, // Rotate the right divider
+            { rotate: "-30deg" },
+            { scaleX: 1 },
         ],
         zIndex: 2,
     },
