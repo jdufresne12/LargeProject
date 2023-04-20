@@ -4,8 +4,8 @@ const styles = StyleSheet.create({
     
     background: {
         position: 'absolute',
-        width: 2400,
-        height: 1200,
+        width: 3600,
+        height: 2400,
         top: 0,
         opacity: 0.2,
         transform: [

@@ -24,7 +24,7 @@ const GameMenu = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView>
+            <ScrollView scrollEnabled={false}>
                 {/* <View style={styles.textContainer}>
                     <Text style={styles.subjectPrompt}>
                         What are we going to test you on today?
