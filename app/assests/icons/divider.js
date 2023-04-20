@@ -13,7 +13,8 @@ const MySvgLine = () => {
     return (
         <View style={styles.container}>
             <Svg height="200" width="100%">
-                <Line
+                {/* WEB /}
+                {/ <Line
                     x1="0%"
                     y1="25%"
                     x2="50%"
@@ -28,9 +29,27 @@ const MySvgLine = () => {
                     y2="25%"
                     stroke={COLORS.primary}
                     strokeWidth={strokeWidth}
+                /> /}
+                {/ MOBILE */}
+                <Line
+                    x1="-1%"
+                    y1="25%"
+                    x2="50.5%"
+                    y2="98%"
+                    stroke={COLORS.primary}
+                    strokeWidth={strokeWidth}
+                />
+                <Line
+                    x1="49%"
+                    y1="98%"
+                    x2="101%"
+                    y2="25%"
+                    stroke={COLORS.primary}
+                    strokeWidth={strokeWidth}
                 />
             </Svg>
         </View>
+
     );
 };
 

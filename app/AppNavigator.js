@@ -8,30 +8,29 @@ import SignUpScreen from "./SignUpScreen";
 import GameMenu from "./GameMenu";
 import ScreenHeaderBtn from "./headers/ScreenHeaderBtn";
 import { COLORS, SIZES } from './constants/theme'
+import GameHeader from './headers/GameHeader';
+import GameMode from './GameMode';
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   const router = useRouter();
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const handleButtonClick = () => {
+    setIsButtonClicked(true);
+  };
 
-  // const [headerOptions, setHeaderOptions] = useState({
-  //   headerShown: false,
-  // });
-
-  // useEffect(() => {
-  //   // Retrieve header options from AsyncStorage on component mount
-  //   const getHeaderOptions = async () => {
-  //     try {
-  //       const options = await AsyncStorage.getItem('headerOptions');
-  //       if (options) {
-  //         setHeaderOptions(JSON.parse(options));
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getHeaderOptions();
-  // }, []);
+  const renderHeaderRight = () => {
+    if (isButtonClicked) {
+      return <AnotherComponent />;
+    } else {
+      return (
+        <ScreenHeaderBtn 
+          handlePress={handleButtonClick}
+        />
+      );
+    }
+  };
 
   return (
     <Stack.Navigator
@@ -40,7 +39,7 @@ const AppNavigator = () => {
       
     >
       <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false}}/>
-      <Stack.Screen name="SignUp" component={SignUpScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerShown:false}}/>
       <Stack.Screen
         name="GameMenu"
         component={GameMenu}
@@ -53,6 +52,22 @@ const AppNavigator = () => {
           headerMode: "screen",
           headerRight: () => (
             <ScreenHeaderBtn 
+              handlePress={() => router.back()}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="GameMode"
+        component={GameMode}
+        options={{
+          headerShown: true,
+          headerStyle: {backgroundColor: COLORS.bg, shadowColor: 'transparent'},
+          headerTitleStyle: {color: COLORS.primary, fontSize: 25},
+          headerTitle: "Trivia Night",
+          headerMode: "screen",
+          headerLeft: () => (
+            <GameHeader 
               handlePress={() => router.back()}
             />
           ),
