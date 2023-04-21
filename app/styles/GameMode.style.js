@@ -88,4 +88,32 @@ export default StyleSheet.create({
     divider: {
         height: 25, // Adjust this value to change the height of the dividers
     },
+    gameContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    gameModeChoiceBtn: {
+        flex: 1,
+        marginHorizontal: 10,
+        height: 50,
+        width: ScreenWidth * 0.7,
+        backgroundColor: COLORS.secondary,
+        borderRadius: 8,
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "center",
+        marginTop: 0,
+        elevation: 5,
+        shadowRadius: 8,
+        shadowOpacity: 0.3,
+        shadowColor: "#166080",
+        shadownOffset: {
+            width: 0,
+            height: 3,
+        },
+        top: "27%",
+        position: "absolute",
+        zIndex: 1,
+    },
 });

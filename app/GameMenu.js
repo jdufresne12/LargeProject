@@ -43,13 +43,13 @@ const GameMenu = () => {
           <View style={styles.row}>
             <TouchableOpacity
               style={styles.menuChoiceBtn}
-              onPress={() => navigation.navigate(GameMode, { category: "Math" })}
+              onPress={() => navigation.navigate("GameMode", { category: "Math", key: "Math" })}
             >
               <Text>Math</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.menuChoiceBtn}
-              onPress={() => navigation.navigate(GameMode, { category: "Sports" })}
+              onPress={() => navigation.navigate("GameMode", { category: "Sports", key: "Sports" })}
             >
               <Text>Sports</Text>
             </TouchableOpacity>
@@ -57,13 +57,13 @@ const GameMenu = () => {
           <View style={styles.row}>
             <TouchableOpacity
               style={styles.menuChoiceBtn}
-              onPress={() => navigation.navigate(GameMode, { category: "Music" })}
+              onPress={() => navigation.navigate("GameMode", { category: "Music", key: "Music"  })}
             >
               <Text>Music</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.menuChoiceBtn}
-              onPress={() => navigation.navigate(GameMode, { category: "Geography" })}
+              onPress={() => navigation.navigate("GameMode", { category: "Geography", key: "Geography"  })}
             >
               <Text>Geography</Text>
             </TouchableOpacity>

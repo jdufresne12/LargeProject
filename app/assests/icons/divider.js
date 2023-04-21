@@ -1,10 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 import Svg, { Line } from "react-native-svg";
 import { Dimensions, StyleSheet } from "react-native";
 const { width: ScreenWidth } = Dimensions.get("screen");
 import { COLORS } from "../../constants/theme";
-// import styles from "../../styles/GameMenu.style";
 
 const MySvgLine = () => {
     const strokeWidth = 10;
@@ -13,43 +12,48 @@ const MySvgLine = () => {
     return (
         <View style={styles.container}>
             <Svg height="200" width="100%">
-                {/* WEB /}
-                {/ <Line
-                    x1="0%"
-                    y1="25%"
-                    x2="50%"
-                    y2="98%"
-                    stroke={COLORS.primary}
-                    strokeWidth={strokeWidth}
-                />
-                <Line
-                    x1="49.9%"
-                    y1="98%"
-                    x2="100%"
-                    y2="25%"
-                    stroke={COLORS.primary}
-                    strokeWidth={strokeWidth}
-                /> /}
-                {/ MOBILE */}
-                <Line
-                    x1="-1%"
-                    y1="25%"
-                    x2="50.5%"
-                    y2="98%"
-                    stroke={COLORS.primary}
-                    strokeWidth={strokeWidth}
-                />
-                <Line
-                    x1="49%"
-                    y1="98%"
-                    x2="101%"
-                    y2="25%"
-                    stroke={COLORS.primary}
-                    strokeWidth={strokeWidth}
-                />
+                {Platform.OS === "web" && (
+                    <>
+                        <Line
+                            x1="0%"
+                            y1="25%"
+                            x2="50%"
+                            y2="98%"
+                            stroke={COLORS.primary}
+                            strokeWidth={strokeWidth}
+                        />
+                        <Line
+                            x1="49.9%"
+                            y1="98%"
+                            x2="100%"
+                            y2="25%"
+                            stroke={COLORS.primary}
+                            strokeWidth={strokeWidth}
+                        />
+                    </>
+                )}
+                {Platform.OS !== "web" && (
+                    <>
+                        <Line
+                            x1="-1%"
+                            y1="25%"
+                            x2="50.5%"
+                            y2="98%"
+                            stroke={COLORS.primary}
+                            strokeWidth={strokeWidth}
+                        />
+                        <Line
+                            x1="49%"
+                            y1="98%"
+                            x2="101%"
+                            y2="25%"
+                            stroke={COLORS.primary}
+                            strokeWidth={strokeWidth}
+                        />
+                    </>
+                )}
             </Svg>
         </View>
-
     );
 };
 

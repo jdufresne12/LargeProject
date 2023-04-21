@@ -1,5 +1,5 @@
-import { Dimensions, StyleSheet, } from "react-native";
-import { COLORS, SIZES } from '../constants/theme'
+import { Dimensions, StyleSheet } from "react-native";
+import { COLORS, SIZES } from "../constants/theme";
 const { width: ScreenWidth } = Dimensions.get("screen");
 export default StyleSheet.create({
     container: {
@@ -12,14 +12,14 @@ export default StyleSheet.create({
         alignSelf: "center",
     },
     welcomeMessage1: {
-        marginTop: 100, 
+        marginTop: 100,
         textAlign: "center",
-        fontSize: 40,
+        fontSize: 35,
         fontWeight: "bold",
         color: COLORS.primary,
     },
     welcomeMessage2: {
-        marginTop: 20, 
+        marginTop: 20,
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
@@ -27,14 +27,14 @@ export default StyleSheet.create({
     },
     errorText: {
         fontWeight: "bold",
-        color: "red"
+        color: "red",
     },
     errorBox: {
-        borderColor: 'red',
+        borderColor: "red",
         borderWidth: 10,
-        backgroundColor: '#ffffff',
+        backgroundColor: "#ffffff",
         height: 120,
-        width: (ScreenWidth >= 400) ? ScreenWidth/3 : ScreenWidth-100,
+        width: ScreenWidth >= 400 ? ScreenWidth / 3 : ScreenWidth - 100,
     },
     errorIcon: {
         position: "relative",
@@ -42,30 +42,18 @@ export default StyleSheet.create({
         top: 50,
     },
     errorBorder: {
-        borderColor: 'red',
-        borderWidth: 3,
-        backgroundColor: 'red'
-    },
-    inputBox: {
         borderColor: "red",
-        borderWidth: 4,
-        borderRadius: 5,
-        height: 40,
-        paddingHorizontal: 10,
-        width: "100%",
+        borderWidth: 3,
+        backgroundColor: "red",
     },
+
     inputContainer: {
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         height: 50,
     },
-    textInputContainer: {
-        marginTop: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 20,
-    },
+
     passwordTextInputContainer: {
         marginTop: 14,
         alignItems: "center",
@@ -131,6 +119,19 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    
+    textInputContainer: {
+        marginTop: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 20,
+    },
+    inputBox: {
+        borderColor: "red",
+        borderWidth: 4,
+        borderRadius: 5,
+        height: 40,
+        paddingHorizontal: 10,
+        width: "100%",
+    },
 });
 //# sourceMappingURL=LoginScreen.style.js.map

@@ -8,19 +8,22 @@ import {
     View,
 } from "react-native";
 import TextInput from "react-native-text-input-interactive";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { COLORS, SIZES } from "./constants/theme";
-import styles from "./styles/GameMenu.style";
+import styles from "./styles/GameMode.style";
 import Background from "./components/tooltip/animatedBackground";
 import Earth from "./assests/icons/Earth";
 import { Dimensions, StyleSheet } from "react-native";
 import Svg, { Polygon, Path } from "react-native-svg";
 const { width: ScreenWidth } = Dimensions.get("screen");
-import Divider from "./assests/icons/divider"
+import Divider from "./assests/icons/divider";
+import Timer from "./components/tooltip/Timer";
+import Counter from "./components/tooltip/Counter";
 
-
-const GameMode = ({ category }) => {
+const GameMode = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+    const { category } = route.params || {};
 
     React.useEffect(() => {
         if (category) {
@@ -36,11 +39,16 @@ const GameMode = ({ category }) => {
                     <Background />
                 </View>
                 <View style={styles.earth}>
+                    <Timer />
                     <Earth />
-                    <TouchableOpacity style={styles.menuChoiceBtn}>
-                            <Text>Math</Text>
+                    <TouchableOpacity style={styles.gameModeChoiceBtn}>
+                        <Text>{category}</Text>
                     </TouchableOpacity>
+                    <Counter />
                 </View>
+                {/* <View>
+                    
+                </View> */}
                 <View>
                     <Divider />
                 </View>
