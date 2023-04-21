@@ -25,8 +25,43 @@ export default StyleSheet.create({
         fontWeight: "bold",
         color: COLORS.secondary,
     },
+    errorText: {
+        fontWeight: "bold",
+        color: "red"
+    },
+    errorBox: {
+        borderColor: 'red',
+        borderWidth: 10,
+        backgroundColor: '#ffffff',
+        height: 120,
+        width: (ScreenWidth >= 400) ? ScreenWidth/3 : ScreenWidth-100,
+    },
+    errorIcon: {
+        position: "relative",
+        right: 10,
+        top: 50,
+    },
+    errorBorder: {
+        borderColor: 'red',
+        borderWidth: 3,
+        backgroundColor: 'red'
+    },
+    inputBox: {
+        borderColor: "red",
+        borderWidth: 4,
+        borderRadius: 5,
+        height: 40,
+        paddingHorizontal: 10,
+        width: "100%",
+    },
+    inputContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: "center",
+        height: 50,
+    },
     textInputContainer: {
-        marginTop: 60,
+        marginTop: 50,
         alignItems: "center",
         justifyContent: "center",
         gap: 20,
@@ -76,11 +111,6 @@ export default StyleSheet.create({
         alignSelf: "center",
         backgroundColor: "#ccc",
     },
-    socialLoginContainer: {
-        marginTop: 16,
-        alignItems: "center",
-        justifyContent: "center",
-    },
     eyeIconContainer: {
         right: 16,
         top: 14,
@@ -101,48 +131,6 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    emailTooltipContainer: {
-        padding: 12,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    emailTooltipTextStyle: {
-        fontSize: 16,
-    },
-    emailTooltipRedTextStyle: {
-        fontWeight: "bold",
-        color: "red",
-    },
-    emailTooltipContentStyle: {
-        borderRadius: 12,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    emailTooltipBackgroundStyle: {
-        backgroundColor: "transparent",
-    },
-    passwordTooltipStyle: {
-        marginTop: 30,
-    },
-    passwordTooltipContainer: {
-        padding: 12,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    passwordTooltipTextStyle: {
-        fontSize: 16,
-    },
-    passwordTooltipRedTextStyle: {
-        fontWeight: "bold",
-        color: "red",
-    },
-    passwordTooltipBackgroundStyle: {
-        backgroundColor: "transparent",
-    },
-    passwordTooltipContentStyle: {
-        borderRadius: 12,
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    
 });
 //# sourceMappingURL=LoginScreen.style.js.map
