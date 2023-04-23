@@ -4,10 +4,11 @@ import {
     StatusBar,
     Text,
     TouchableOpacity,
+    TextInput,
     View,
 } from "react-native";
 import { useState, useEffect } from "react";
-import TextInput from "react-native-text-input-interactive";
+// import TextInput from "react-native-text-input-interactive";
 import { useNavigation } from "@react-navigation/native";
 
 import styles from "./styles/LoginScreen.style";
@@ -84,10 +85,8 @@ const SignUpScreen = () => {
             <StatusBar barStyle="dark-content" />
             <Text style={styles.welcomeMessage1}>Join in on the fun!</Text>
             <Text style={styles.welcomeMessage2}>Create an account</Text>
-
             <View style={styles.textInputContainer}>
-
-                <View>
+                <View style={styles.fieldContainer}>
                     <TextInput
                         placeholder={fullNameError || "Full Name"}
                         autoCapitalize="words"
@@ -97,13 +96,12 @@ const SignUpScreen = () => {
                         placeholderTextColor={
                             fullNameError ? "red" : "gray"
                         }
-                        style={styles.inputBox}
-                    />
-                    {/* {fullNameError ? (
-                        <ErrorIcon styles={styles.inputWithIcon} />
-                    ) : null} */}
+                        style={fullNameError ? styles.errorBox : styles.inputBox}
+                    >
+                    </TextInput>
+                    {/* {fullNameError ? (<ErrorIcon styles={styles.errorIcon}/> ) : null} */}
                 </View>
-                <View>
+                <View style={styles.fieldContainer}>
                     <TextInput
                         placeholder={emailError || "Email"}
                         onChangeText={setEmail}
@@ -113,13 +111,13 @@ const SignUpScreen = () => {
                         placeholderTextColor={
                             emailError ? "red" : "gray"
                         }
-                        style={styles.inputBox}
+                        style={emailError ? styles.errorBox : styles.inputBox}
                     />
                     {/* {emailError ? (
-                        <ErrorIcon styles={styles.inputWithIcon} />
+                        <ErrorIcon styles={styles.errorIcon} />
                     ) : null} */}
                 </View>
-                <View>
+                <View style={styles.fieldContainer}>
                     <TextInput
                         placeholder={passwordError || "Password"}
                         secureTextEntry={!isPasswordVisible}
@@ -129,13 +127,13 @@ const SignUpScreen = () => {
                         placeholderTextColor={
                             passwordError ? "red" : "gray"
                         }
-                        style={styles.inputBox}
+                        style={passwordError ? styles.errorBox : styles.inputBox}
                     />
                     {/* {passwordError ? (
-                        <ErrorIcon styles={styles.inputWithIcon} />
+                        <ErrorIcon styles={styles.errorIcon} />
                     ) : null} */}
                 </View>
-                <View>
+                <View style={styles.fieldContainer}>
                     <TextInput
                         placeholder={confirmPasswordError || "Confirm Password"}
                         secureTextEntry={!isPasswordVisible}
@@ -145,10 +143,10 @@ const SignUpScreen = () => {
                         placeholderTextColor={
                             confirmPasswordError ? "red" : "gray"
                         }
-                        style={styles.inputBox}
+                        style={confirmPasswordError ? styles.errorBox : styles.inputBox}
                     />
                     {/* {confirmPasswordError ? (
-                        <ErrorIcon styles={styles.inputWithIcon} />
+                        <ErrorIcon styles={styles.errorIcon} />
                     ) : null} */}
                 </View>
             </View>

@@ -12,48 +12,55 @@ export default StyleSheet.create({
         alignSelf: "center",
     },
     welcomeMessage1: {
-        marginTop: 100,
+        marginTop: 90,
         textAlign: "center",
         fontSize: 35,
         fontWeight: "bold",
         color: COLORS.primary,
     },
     welcomeMessage2: {
-        marginTop: 20,
+        marginTop: 10,
         textAlign: "center",
         fontSize: 25,
         fontWeight: "bold",
         color: COLORS.secondary,
+    },
+    textInputContainer: {
+        marginTop: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 25,
+    },
+    inputBox: {
+        height: 50,
+        paddingLeft: 15,
+        width: ScreenWidth >= 500 ? ScreenWidth/3 : ScreenWidth-30,
+        backgroundColor: 'white',
+        borderRadius: 10,
+    },
+    fieldContainer: { 
+        flexDirection: 'row'
     },
     errorText: {
         fontWeight: "bold",
         color: "red",
     },
     errorBox: {
-        borderColor: "red",
-        borderWidth: 10,
-        backgroundColor: "#ffffff",
-        height: 120,
-        width: ScreenWidth >= 400 ? ScreenWidth / 3 : ScreenWidth - 100,
+        height: 50,
+        paddingLeft: 15,
+        width: ScreenWidth >= 500 ? ScreenWidth/2 : ScreenWidth-30,
+        backgroundColor: 'white',
+        borderRadius: 10,
+        borderColor: 'red',
+        borderWidth: 2
     },
     errorIcon: {
-        position: "relative",
-        right: 10,
-        top: 50,
+        margin: 10,
+        textAlign: 'right',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        alignSelf: 'flex-end'
     },
-    errorBorder: {
-        borderColor: "red",
-        borderWidth: 3,
-        backgroundColor: "red",
-    },
-
-    inputContainer: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        height: 50,
-    },
-
     passwordTextInputContainer: {
         marginTop: 14,
         alignItems: "center",
@@ -61,7 +68,7 @@ export default StyleSheet.create({
     },
     loginButtonStyle: {
         height: 40,
-        width: ScreenWidth * 0.9,
+        width: ScreenWidth >= 500 ? ScreenWidth/2.5 : ScreenWidth-30,
         backgroundColor: COLORS.primary,
         borderRadius: 8,
         alignItems: "center",
@@ -118,20 +125,6 @@ export default StyleSheet.create({
     emailTextInputContainer: {
         alignItems: "center",
         justifyContent: "center",
-    },
-    textInputContainer: {
-        marginTop: 50,
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 20,
-    },
-    inputBox: {
-        borderColor: "red",
-        borderWidth: 4,
-        borderRadius: 5,
-        height: 40,
-        paddingHorizontal: 10,
-        width: "100%",
     },
 });
 //# sourceMappingURL=LoginScreen.style.js.map

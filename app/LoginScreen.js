@@ -6,18 +6,53 @@ import {
   StatusBar,
   Text,
   TouchableOpacity,
+  TextInput,
   View,
 } from "react-native";
-import TextInput from "react-native-text-input-interactive";
-
+import { useState } from "react";
 import styles from "./styles/LoginScreen.style";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import { COLORS } from './constants/theme'
 
-const LoginScreen = ({ onLoginPress, onSignupPress, onForgotPasswordPress }) => {
+const LoginScreen = ({
+  onLoginPress,
+  onSignupPress,
+  onForgotPasswordPress,
+}) => {
   const navigation = useNavigation();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isPasswordVisible, setPasswordVisible] = React.useState(false);
+  //For validation
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const validateEmail = () => {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    if (emailRegex.test(email)) {
+      setEmailError("");
+    } else if (!email) {
+      setEmailError("Email is required");
+    } else {
+      setEmailError("Email is invaild");
+    }
+  };
+  const validatePassword = () => {
+    if (!password) {
+        setPasswordError("Password is required");
+    } else {
+        setPasswordError("");
+    }
+};
+  const OnLoginPress = () => {
+    validateEmail();
+    validatePassword();
+    if (!emailError && !passwordError) {
+      console.log(email, password);
+    } else {
+      console.log("Somethings missing");
+    }
+  };
 
   const handleEyePress = () => {
     setPasswordVisible((oldValue) => !oldValue);
@@ -31,33 +66,38 @@ const LoginScreen = ({ onLoginPress, onSignupPress, onForgotPasswordPress }) => 
         <StatusBar barStyle="dark-content" />
         <View style={styles.textInputContainer}>
           <TextInput
-            placeholder="Email"
+            placeholder={emailError || 'Email'}
+            placeholderTextColor={emailError ? 'red' : COLORS.primary}
             onChangeText={setEmail}
+            onBlur={validateEmail}
             autoCapitalize="none"
+            style={emailError ? styles.errorBox : styles.inputBox}
           />
           <TextInput
-            placeholder="Password"
+            placeholder={passwordError || 'Password'}
+            placeholderTextColor={emailError ? 'red' : COLORS.primary}
             secureTextEntry={!isPasswordVisible}
             onChangeText={setPassword}
-            autoCapitalize="none"
             onIconPress={handleEyePress}
+            autoCapitalize="none"
+            style={passwordError ? styles.errorBox : styles.inputBox}
           />
         </View>
         <TouchableOpacity
           style={styles.loginButtonStyle}
-          onPress={() => onLoginPress(email, password)}
+          onPress={() => OnLoginPress(email, password)}
         >
           <Text style={styles.loginTextStyle}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signupStyle}
-          onPress={() => navigation.navigate('SignUp')}
+          onPress={() => navigation.navigate("SignUp")}
         >
           <Text style={styles.signupTextStyle}>Create an account</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signupStyle}
-          onPress={() => navigation.navigate('GameMenu')}
+          onPress={() => navigation.navigate("GameMenu")}
         >
           <Text style={styles.signupTextStyle}>Forgot Password?</Text>
         </TouchableOpacity>
