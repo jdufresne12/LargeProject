@@ -1,11 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { COLORS } from "../../constants/theme"
+import { COLORS } from "../../constants/theme";
 
-const Timer = () => {
+const Timer = ({ isTimerActive }) => {
     const [time, setTime] = React.useState(90);
 
     React.useEffect(() => {
+        if (!isTimerActive) {
+            return;
+        }
+
         const countdown = setInterval(() => {
             setTime((prevTime) => {
                 if (prevTime <= 1) {
@@ -17,7 +21,7 @@ const Timer = () => {
         }, 1000);
 
         return () => clearInterval(countdown);
-    }, []);
+    }, [isTimerActive]);
 
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;

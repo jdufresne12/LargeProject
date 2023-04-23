@@ -8,16 +8,9 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import { COLORS } from "../../constants/theme"
+import { COLORS } from "../../constants/theme";
 
-const Counter = ({ onButtonClick }) => {
-    const [count, setCount] = React.useState(0);
-
-    const handleClick = () => {
-        setCount((prevCount) => prevCount + 1);
-        onButtonClick();
-    };
-
+const Counter = ({ count, incrementCount }) => {
     return (
         <View style={styles.counterContainer}>
             <Text style={styles.counterText}>{count}/10</Text>

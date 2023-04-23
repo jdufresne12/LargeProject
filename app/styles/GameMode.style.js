@@ -82,7 +82,7 @@ export default StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
         width: ScreenWidth,
-        marginBottom: 35,
+        marginBottom: 50,
         zIndex: -1,
     },
     divider: {
