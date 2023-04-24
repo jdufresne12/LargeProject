@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
     counterContainer: {
         position: "absolute",
         alignItems: "center",
-        top: -25,
-        right: -100,
         padding: 10,
         backgroundColor: COLORS.secondary,
         borderRadius: 5,

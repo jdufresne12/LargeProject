@@ -48,7 +48,7 @@ export default StyleSheet.create({
     errorBox: {
         height: 50,
         paddingLeft: 15,
-        width: ScreenWidth >= 500 ? ScreenWidth/2 : ScreenWidth-30,
+        width: ScreenWidth >= 500 ? ScreenWidth/3 : ScreenWidth-30,
         backgroundColor: 'white',
         borderRadius: 10,
         borderColor: 'red',
@@ -68,7 +68,7 @@ export default StyleSheet.create({
     },
     loginButtonStyle: {
         height: 40,
-        width: ScreenWidth >= 500 ? ScreenWidth/2.5 : ScreenWidth-30,
+        width: ScreenWidth >= 500 ? ScreenWidth/3 : ScreenWidth-30,
         backgroundColor: COLORS.primary,
         borderRadius: 8,
         alignItems: "center",

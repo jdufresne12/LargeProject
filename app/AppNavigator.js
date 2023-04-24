@@ -1,7 +1,8 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { useState, useEffect} from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity} from "react-native";
 import { useRouter } from "expo-router";
 import LoginScreen from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";
@@ -10,6 +11,8 @@ import ScreenHeaderBtn from "./headers/ScreenHeaderBtn";
 import { COLORS, SIZES } from './constants/theme'
 import GameHeader from './headers/GameHeader';
 import GameMode from './GameMode';
+import PauseButton from './assests/icons/Pause'
+import { Alert } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +22,28 @@ const AppNavigator = () => {
   const handleButtonClick = () => {
     setIsButtonClicked(true);
   };
+
+  function handlePauseButtonPress() {
+    Alert.alert(
+      'Pause',
+      "Are you sure you want to quit? Momma didn't raise a quitter!",
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'Quit',
+          style: 'quit',
+          onPress: () => {
+            router.back()
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+  
 
   const renderHeaderRight = () => {
     if (isButtonClicked) {
@@ -47,6 +72,7 @@ const AppNavigator = () => {
           headerShown: true,
           headerStyle: {backgroundColor: COLORS.bg, shadowColor: 'transparent'},
           headerTitleStyle: {color: COLORS.primary, fontSize: 25},
+          headerTitleAlign: 'center',
           headerTitle: "Trivia Night",
           headerLeft: "",
           headerMode: "screen",
@@ -64,12 +90,14 @@ const AppNavigator = () => {
           headerShown: true,
           headerStyle: {backgroundColor: COLORS.bg, shadowColor: 'transparent'},
           headerTitleStyle: {color: COLORS.primary, fontSize: 25},
+          headerTitleAlign: 'center',
           headerTitle: "Trivia Night",
           headerMode: "screen",
           headerLeft: () => (
-            <GameHeader 
-              handlePress={() => router.back()}
-            />
+            <TouchableOpacity onPress={handlePauseButtonPress}
+            >
+              <PauseButton />
+            </TouchableOpacity>
           ),
         }}
       />

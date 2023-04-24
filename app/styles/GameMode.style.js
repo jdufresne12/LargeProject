@@ -22,6 +22,13 @@ export default StyleSheet.create({
         flex: 1,
         alignSelf: "center",
         marginBottom: -150,
+        
+    },
+    info: {
+        flexDirection: 'column',
+        marginTop: -20,
+        marginBottom: 100,
+        marginRight: 115
     },
     animationWrapper: {
         width: "100%", // Increase the width to stretch the animation

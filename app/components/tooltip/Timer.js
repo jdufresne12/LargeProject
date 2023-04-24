@@ -39,12 +39,11 @@ const styles = StyleSheet.create({
     timerContainer: {
         position: "absolute",
         alignItems: "center",
-        top: -25,
-        left: -100,
         padding: 10,
         backgroundColor: COLORS.secondary,
         borderRadius: 5,
         width: 100,
+        marginLeft: 8
     },
     timerText: {
         fontSize: 18,
