@@ -23,7 +23,6 @@ import { useEffect } from "react";
 import PausedScreen from "./components/tooltip/PausedScreen";
 import PlayScreen from "./components/tooltip/PlayScreen";
 
-import questionsData from "./assests/questionsData.json";
 import ResultOverlay from "./components/tooltip/ResultOverlay";
 
 import GameContext from "./GameContext";
@@ -33,39 +32,11 @@ const GameMode = () => {
     const route = useRoute();
     const { category } = route.params || {};
 
-    // // Add states for questions and the current question index
-    // const [questions, setQuestions] = React.useState([]);
-    // const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
-
-    // // Get the current question and choices
-    // const currentQuestion = questions[currentQuestionIndex];
-    // const choices = currentQuestion ? currentQuestion.choices : [];
-
-    // // Add a state for the count
-    // const [count, setCount] = React.useState(0);
-
-    // // Function to update the count
-    // const incrementCount = () => {
-    //     setCount((prevCount) => prevCount + 1);
-    // };
-
-    // // Fetch questions from the API based on the selected category
-    // const fetchQuestions = async (category) => {
-    //     try {
-    //         const response = await fetch(
-    //             `https://your-api-endpoint/questions?category=${category}&limit=10`
-    //         );
-    //         const data = await response.json();
-    //         setQuestions(data);
-    //     } catch (error) {
-    //         console.error("Error fetching questions:", error);
-    //     }
-    // };
-
-    const [showResultOverlay, setShowResultOverlay] = React.useState(false);
-
+    const [questions, setQuestions] = React.useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
-    const currentQuestion = questionsData.questions[currentQuestionIndex];
+
+    const currentQuestion = questions[currentQuestionIndex];
+
     const [count, setCount] = React.useState(0);
 
     const incrementCount = (selectedAnswer) => {
@@ -73,6 +44,27 @@ const GameMode = () => {
             setCount((prevCount) => prevCount + 1);
         }
     };
+
+    const fetchQuestions = async (category) => {
+        console.log(category);
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/questions?category=${category}&limit=10`
+            );
+            const data = await response.json();
+            setQuestions(data);
+        } catch (error) {
+            console.error("Error fetching questions:", error);
+        }
+    };
+
+    useEffect(() => {
+        if (category) {
+            fetchQuestions(category);
+        }
+    }, [category]);
+
+    const [showResultOverlay, setShowResultOverlay] = React.useState(false);
 
     const resetGameState = () => {
         setCurrentQuestionIndex(0);
@@ -93,19 +85,9 @@ const GameMode = () => {
 
     const { isPaused } = React.useContext(GameContext);
 
-    // const [isPaused, setIsPaused] = React.useState(false);
-    // const handlePause = () => {
-    //     setIsPaused(!isPaused);
-    //     console.log(isPaused);
-    // };
-
-    // React.useEffect(() => {
-    //     if (category) {
-    //         console.log("Selected category:", category);
-    //         // Fetch questions when the category is selected
-    //         fetchQuestions(category);
-    //     }
-    // }, [category]);
+    const handleTimeUp = () => {
+        setShowResultOverlay(true);
+    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -113,24 +95,13 @@ const GameMode = () => {
                 <View style={styles.dividerContainer}>
                     <Background />
                 </View>
-                <View style={styles.info}>
-                    <View style={{ alignSelf: "flex-start" }}>
-                        <Timer
-                            isTimerActive={
-                                hasGameStarted &&
-                                !showResultOverlay &&
-                                !isPaused
-                            }
-                        />
-                    </View>
-                    <View style={{ alignSelf: "flex-end" }}>
-                        <Counter count={count} />
-                    </View>
-                    {/* <TouchableOpacity onPress={handlePause}>
-                        {isPaused ? <PlayScreen /> : <PausedScreen />}
-                    </TouchableOpacity> */}
-                </View>
                 <View style={styles.earth}>
+                    <Timer
+                        isTimerActive={
+                            hasGameStarted && !showResultOverlay && !isPaused
+                        }
+                        onTimeUp={handleTimeUp}
+                    />
                     <Earth />
                     {currentQuestion && (
                         <TouchableOpacity
@@ -141,7 +112,7 @@ const GameMode = () => {
                             <Text>{currentQuestion.question}</Text>
                         </TouchableOpacity>
                     )}
-                    {/* Pass the count and incrementCount function to the Counter component */}
+                    <Counter count={count} />
                 </View>
                 <View>
                     <Divider />
@@ -163,7 +134,8 @@ const GameMode = () => {
                                                 );
                                                 incrementCount(option);
                                                 if (
-                                                    currentQuestionIndex === 9
+                                                    currentQuestionIndex ===
+                                                    questions.length - 1
                                                 ) {
                                                     setShowResultOverlay(true);
                                                 }
@@ -189,7 +161,7 @@ const GameMode = () => {
                                                     );
                                                     if (
                                                         currentQuestionIndex ===
-                                                        9
+                                                        questions.length - 1
                                                     ) {
                                                         setShowResultOverlay(
                                                             true

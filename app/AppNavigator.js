@@ -1,31 +1,31 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
+import { View, Text, TouchableOpacity, Alert, Platform } from "react-native";
 import LoginScreen from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";
 import GameMenu from "./GameMenu";
 import ScreenHeaderBtn from "./headers/ScreenHeaderBtn";
 import { COLORS, SIZES } from "./constants/theme";
-import GameHeader from "./headers/GameHeader";
 import GameMode from "./GameMode";
 import PauseButton from "./assests/icons/Pause";
-import { Alert } from "react-native";
 import { GameProvider } from "./GameContext";
+import PauseModal from "./components/tooltip/PauseModal";
 
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
-    const router = useRouter();
+    const navigation = useNavigation();
     const [isButtonClicked, setIsButtonClicked] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     const handleButtonClick = () => {
         setIsButtonClicked(true);
     };
-    const [isPaused, setIsPaused] = useState(false);
 
-    function handlePauseButtonPress() {
+    const handlePauseButtonPressMobile = () => {
         setIsPaused(true);
         Alert.alert(
             "Pause",
@@ -43,28 +43,38 @@ const AppNavigator = () => {
                     style: "quit",
                     onPress: () => {
                         setIsPaused(false);
-                        router.back();
+                        navigation.goBack();
                     },
                 },
             ],
             { cancelable: false }
         );
-    }
-
-    const renderHeaderRight = () => {
-        if (isButtonClicked) {
-            return <AnotherComponent />;
-        } else {
-            return <ScreenHeaderBtn handlePress={handleButtonClick} />;
-        }
     };
+
+    const handlePauseButtonPressWeb = () => {
+        setIsModalVisible(true);
+        setIsPaused(true);
+    };
+
+    const handleModalCancel = () => {
+        setIsModalVisible(false);
+        setIsPaused(false);
+    };
+
+    const handleModalQuit = () => {
+        setIsModalVisible(false);
+        setIsPaused(false);
+        navigation.goBack();
+    };
+
+    const handlePauseButtonPress =
+        Platform.OS === "web"
+            ? handlePauseButtonPressWeb
+            : handlePauseButtonPressMobile;
 
     return (
         <GameProvider value={{ isPaused: isPaused, setIsPaused: setIsPaused }}>
-            <Stack.Navigator
-                initialRouteName="Login"
-                //screenOptions={headerOptions}
-            >
+            <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen
                     name="Login"
                     component={LoginScreen}
@@ -94,7 +104,7 @@ const AppNavigator = () => {
                         headerMode: "screen",
                         headerRight: () => (
                             <ScreenHeaderBtn
-                                handlePress={() => router.back()}
+                                handlePress={() => navigation.goBack()}
                             />
                         ),
                     }}
@@ -129,6 +139,11 @@ const AppNavigator = () => {
                     })}
                 />
             </Stack.Navigator>
+            <PauseModal
+                isVisible={isModalVisible}
+                onCancel={handleModalCancel}
+                onQuit={handleModalQuit}
+            />
         </GameProvider>
     );
 };

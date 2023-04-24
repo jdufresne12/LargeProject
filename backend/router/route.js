@@ -14,4 +14,7 @@ router.route('/result')
         .get(controller.getResult)
         .post(controller.storeResult)
         .delete(controller.dropResult)
+
+router.route('/gamemode').get(controller.getQuestionsByCategory);
+
 export default router;

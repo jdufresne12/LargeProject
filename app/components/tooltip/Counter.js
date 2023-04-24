@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         alignItems: "center",
         padding: 10,
+        top: -25,
+        right: -100,
         backgroundColor: COLORS.secondary,
         borderRadius: 5,
         width: 100,

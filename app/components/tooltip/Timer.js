@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { COLORS } from "../../constants/theme";
 
-const Timer = ({ isTimerActive }) => {
+const Timer = ({ isTimerActive, onTimeUp }) => {
     const [time, setTime] = React.useState(90);
 
     React.useEffect(() => {
@@ -23,6 +23,12 @@ const Timer = ({ isTimerActive }) => {
         return () => clearInterval(countdown);
     }, [isTimerActive]);
 
+    React.useEffect(() => {
+        if (time === 0) {
+            onTimeUp && onTimeUp();
+        }
+    }, [time, onTimeUp]);
+
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 
@@ -40,10 +46,12 @@ const styles = StyleSheet.create({
         position: "absolute",
         alignItems: "center",
         padding: 10,
+        top: -25,
+        left: -100,
         backgroundColor: COLORS.secondary,
         borderRadius: 5,
         width: 100,
-        marginLeft: 8
+        // marginLeft: 8,
     },
     timerText: {
         fontSize: 18,

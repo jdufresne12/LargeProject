@@ -23,12 +23,6 @@ export default StyleSheet.create({
         alignSelf: "center",
         marginBottom: -150,
     },
-    info: {
-        flexDirection: 'column',
-        marginTop: -20,
-        marginBottom: 50,
-        marginRight: 115
-    },
     animationWrapper: {
         width: "100%", // Increase the width to stretch the animation
         height: "300%", // Increase the height to stretch the animation
@@ -103,8 +97,8 @@ export default StyleSheet.create({
         flex: 1,
         marginHorizontal: 10,
         height: 70,
-        // width: ScreenWidth * 0.9,
-        width: "auto",
+        width: ScreenWidth * 0.65,
+        // width: "auto",
         padding: 10,
         backgroundColor: COLORS.secondary,
         borderRadius: 8,
