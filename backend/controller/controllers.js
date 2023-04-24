@@ -1,18 +1,20 @@
 // import questions, { answers } from '../database/data.js'
 import connect from "../database/conn.js";
+import mongoose from "mongoose";
+
+const questionSchema = new mongoose.Schema(
+    {
+        index: Number,
+        question: String,
+        options: [String],
+        answer: String,
+    },
+    { collection: null }
+);
 
 // Create a function to get a dynamic schema with the collection name
 function getDynamicSchema(mongoose, collectionName) {
-    const schema = new mongoose.Schema(
-        {
-            question: String,
-            options: [String],
-            answer: Number,
-        },
-        { collection: collectionName } // add collection property here
-    );
-
-    return mongoose.model(collectionName, schema, collectionName);
+    return mongoose.model(collectionName, questionSchema, collectionName);
 }
 
 /** Fetch a collection of questions based on category */
@@ -31,7 +33,7 @@ export async function getQuestionsByCategory(req, res) {
             options: q.options,
             answer: q.options[q.answer],
         }));
-
+        
         res.json(formattedQuestions);
     } catch (error) {
         res.json({ error });

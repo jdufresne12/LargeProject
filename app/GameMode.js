@@ -46,12 +46,12 @@ const GameMode = () => {
     };
 
     const fetchQuestions = async (category) => {
-        console.log(category);
         try {
             const response = await fetch(
-                `http://localhost:5000/api/questions?category=${category}&limit=10`
+                `http://localhost:5000/api/gamemode?category=${category}&limit=10`
             );
             const data = await response.json();
+            console.log(data);
             setQuestions(data);
         } catch (error) {
             console.error("Error fetching questions:", error);
