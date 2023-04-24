@@ -17,14 +17,31 @@ const ResultOverlay = ({ score, onClose }) => {
     const result = score >= 6 ? "PASS" : "FAIL";
 
     const scale = useRef(new Animated.Value(0)).current;
+    const pulse = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
-        Animated.spring(scale, {
-            toValue: 1,
-            tension: 150,
-            friction: 10,
-            useNativeDriver: true,
-        }).start();
+        Animated.sequence([
+            Animated.spring(scale, {
+                toValue: 1,
+                tension: 100,
+                friction: 1,
+                useNativeDriver: true,
+            }),
+            Animated.loop(
+                Animated.sequence([
+                    Animated.timing(pulse, {
+                        toValue: 1.1,
+                        duration: 500,
+                        useNativeDriver: true,
+                    }),
+                    Animated.timing(pulse, {
+                        toValue: 1,
+                        duration: 500,
+                        useNativeDriver: true,
+                    }),
+                ])
+            ),
+        ]).start();
     }, []);
 
     const handleOverlayPress = () => {
@@ -36,6 +53,10 @@ const ResultOverlay = ({ score, onClose }) => {
         transform: [{ scale }],
     };
 
+    const pulseStyle = {
+        transform: [{ scale: pulse }],
+    };
+
     return (
         <TouchableOpacity
             style={styles.overlay}
@@ -43,11 +64,10 @@ const ResultOverlay = ({ score, onClose }) => {
             activeOpacity={1}
         >
             <Animated.View style={[styles.imageContainer, animatedStyle]}>
-                {result === "PASS" ? (
-                    <Image source={passImage} style={styles.image} />
-                ) : (
-                    <Image source={failImage} style={styles.image} />
-                )}
+                <Animated.Image
+                    source={result === "PASS" ? passImage : failImage}
+                    style={[styles.image, pulseStyle]}
+                />
             </Animated.View>
         </TouchableOpacity>
     );
@@ -60,7 +80,7 @@ const styles = StyleSheet.create({
         left: 0,
         width: "100%",
         height: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundColor: "rgba(0,0,0,1)",
         justifyContent: "center",
         alignItems: "center",
         flex: 1,

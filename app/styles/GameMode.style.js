@@ -22,12 +22,11 @@ export default StyleSheet.create({
         flex: 1,
         alignSelf: "center",
         marginBottom: -150,
-        
     },
     info: {
         flexDirection: 'column',
         marginTop: -20,
-        marginBottom: 100,
+        marginBottom: 50,
         marginRight: 115
     },
     animationWrapper: {
@@ -103,8 +102,10 @@ export default StyleSheet.create({
     gameModeChoiceBtn: {
         flex: 1,
         marginHorizontal: 10,
-        height: 50,
-        width: ScreenWidth * 0.7,
+        height: 70,
+        // width: ScreenWidth * 0.9,
+        width: "auto",
+        padding: 10,
         backgroundColor: COLORS.secondary,
         borderRadius: 8,
         alignItems: "center",
