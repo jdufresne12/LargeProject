@@ -8,6 +8,7 @@ import {
     TouchableOpacity,
     TextInput,
     View,
+    Animated,
 } from "react-native";
 import { useState } from "react";
 import styles from "./styles/LoginScreen.style";
@@ -20,21 +21,19 @@ const LoginScreen = ({
     onForgotPasswordPress,
 }) => {
     const navigation = useNavigation();
-    const [email, setEmail] = React.useState("");
+    const [userName, setUserName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [isPasswordVisible, setPasswordVisible] = React.useState(false);
     //For validation
-    const [emailError, setEmailError] = useState("");
+    const [userNameError, setUserNameError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [loginError, setLoginError] = React.useState(false);
 
-    const validateEmail = () => {
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (emailRegex.test(email)) {
-            setEmailError("");
-        } else if (!email) {
-            setEmailError("Email is required");
+    const validateUserName = () => {
+        if (!userName) {
+            setUserNameError("Username is required");
         } else {
-            setEmailError("Email is invaild");
+            setUserNameError("");
         }
     };
     const validatePassword = () => {
@@ -44,10 +43,38 @@ const LoginScreen = ({
             setPasswordError("");
         }
     };
+
+    const shakeAnimation = new Animated.Value(0);
+    const shake = () => {
+        Animated.sequence([
+            Animated.timing(shakeAnimation, {
+                toValue: 10,
+                duration: 100,
+                useNativeDriver: true,
+            }),
+            Animated.timing(shakeAnimation, {
+                toValue: -10,
+                duration: 100,
+                useNativeDriver: true,
+            }),
+            Animated.timing(shakeAnimation, {
+                toValue: 10,
+                duration: 100,
+                useNativeDriver: true,
+            }),
+            Animated.timing(shakeAnimation, {
+                toValue: 0,
+                duration: 100,
+                useNativeDriver: true,
+            }),
+        ]).start();
+    };
+
     const OnLoginPress = () => {
-        // validateEmail();
-        // validatePassword();
-        loginUser(email, password);
+        validateUserName();
+        validatePassword();
+        loginError ? shake() : null;
+        loginUser(userName, password);
         // if (!emailError && !passwordError) {
         //     loginUser(email, password);
         // } else {
@@ -77,11 +104,14 @@ const LoginScreen = ({
         if (response.ok) {
           console.log('Login successful:', data);
           navigation.navigate("GameMenu")
+          setLoginError(false);
         } else {
           console.log('Login failed:', data);
+          setLoginError(true)
         }
       } catch (error) {
         console.error('Error during login:', error);
+        setLoginError(true)
       }
     }
 
@@ -93,19 +123,19 @@ const LoginScreen = ({
                 <StatusBar barStyle="dark-content" />
                 <View style={styles.textInputContainer}>
                     <TextInput
-                        placeholder={emailError || "Email"}
+                        placeholder={userNameError || "Username"}
                         placeholderTextColor={
-                            emailError ? "red" : COLORS.primary
+                            userNameError ? "red" : COLORS.primary
                         }
-                        onChangeText={setEmail}
-                        onBlur={validateEmail}
+                        onChangeText={setUserName}
+                        onBlur={validateUserName}
                         autoCapitalize="none"
-                        style={emailError ? styles.errorBox : styles.inputBox}
+                        style={userNameError ? styles.errorBox : styles.inputBox}
                     />
                     <TextInput
                         placeholder={passwordError || "Password"}
                         placeholderTextColor={
-                            emailError ? "red" : COLORS.primary
+                            passwordError ? "red" : COLORS.primary
                         }
                         secureTextEntry={!isPasswordVisible}
                         onChangeText={setPassword}
@@ -116,11 +146,17 @@ const LoginScreen = ({
                         }
                     />
                 </View>
-                <TouchableOpacity
-                    style={styles.loginButtonStyle}
-                    onPress={() => OnLoginPress(email, password)}
-                >
-                    <Text style={styles.loginTextStyle}>Login</Text>
+                <TouchableOpacity onPress={() => {
+                    OnLoginPress(userName, password)
+                    }}>
+                    <Animated.View
+                        style={[
+                            styles.loginButtonStyle,
+                            { transform: [{ translateX: shakeAnimation }] },
+                        ]}
+                    >
+                        <Text style={styles.loginTextStyle}>Login</Text>
+                    </Animated.View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.signupStyle}
@@ -129,11 +165,6 @@ const LoginScreen = ({
                     <Text style={styles.signupTextStyle}>
                         Create an account
                     </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.signupStyle}
-                >
-                    <Text style={styles.signupTextStyle}>Forgot Password?</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>

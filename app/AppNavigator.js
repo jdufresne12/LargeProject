@@ -132,6 +132,7 @@ const AppNavigator = () => {
                                         route.params.setIsPaused
                                     )
                                 }
+                                style={{marginLeft: 20}}
                             >
                                 <PauseButton />
                             </TouchableOpacity>
