@@ -88,7 +88,7 @@ const LoginScreen = ({
 
     const loginUser = async (username, password) => {
       try {
-        const response = await fetch('http://localhost:5000/api/login', {
+        const response = await fetch('http://167.99.248.180/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
