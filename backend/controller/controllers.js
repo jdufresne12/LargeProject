@@ -1,6 +1,7 @@
 // import questions, { answers } from '../database/data.js'
 import connect from "../database/conn.js";
 import mongoose from "mongoose";
+import users from "../models/userModel.js";
 
 const questionSchema = new mongoose.Schema(
     {
@@ -33,10 +34,79 @@ export async function getQuestionsByCategory(req, res) {
             options: q.options,
             answer: q.options[q.answer],
         }));
-        
+
         res.json(formattedQuestions);
     } catch (error) {
         res.json({ error });
+    }
+}
+
+/** Login */
+export async function loginUser(req, res) {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res
+                .status(400)
+                .json({ message: "Username and password are required" });
+        }
+
+        const user = await users.findOne({ username });
+
+        if (!user) {
+            return res.status(404).json({ message: "Invalid username" });
+        }
+
+        if (password !== user.password) {
+            return res.status(404).json({ message: "Invalid password" });
+        }
+
+        res.json({
+            message: "Successfully logged in",
+            userId: user._id,
+            username: user.username,
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "An error occurred during the login" });
+    }
+}
+
+/** Signup */
+export async function signUp(req, res) {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res
+                .status(400)
+                .json({ message: "Username and password are required" });
+        }
+
+        const existingUser = await users.findOne({ username });
+
+        if (existingUser) {
+            return res.status(400).json({ message: "Username already exists" });
+        }
+
+        const newUser = new users({
+            username,
+            password
+        });
+
+        await newUser.save();
+
+        res.status(201).json({
+            message: "User created successfully",
+            userId: newUser._id,
+            username: newUser.username
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "An error occurred during the signup",
+        });
     }
 }
 

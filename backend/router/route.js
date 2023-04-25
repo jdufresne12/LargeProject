@@ -17,4 +17,7 @@ router.route('/result')
 
 router.route('/gamemode').get(controller.getQuestionsByCategory);
 
+router.route('/login').post(controller.loginUser);
+router.route('/signup').post(controller.signUp);
+
 export default router;

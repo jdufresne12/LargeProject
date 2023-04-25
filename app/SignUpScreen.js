@@ -69,14 +69,41 @@ const SignUpScreen = () => {
     };
 
     const OnSignUpPress = () => {
-        validateName();
-        validateEmail();
-        validatePassword();
-        validateConfirmPassword();
-        if (fullName && email && password && confirmPassword) {
-            console.log(fullName, email, password, confirmPassword);
-        } else {
-            console.log("Somethings missing");
+        // validateName();
+        // validateEmail();
+        // validatePassword();
+        // validateConfirmPassword();
+        // if (fullName && email && password && confirmPassword) {
+        //     console.log(fullName, email, password, confirmPassword);
+        // } else {
+        //     console.log("Somethings missing");
+        // }
+        signUpUser(email, password);
+    };
+
+    const signUpUser = async (email, password) => {
+        try {
+            const response = await fetch("http://localhost:5000/api/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: email,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log("Signup successful:", data);
+                navigation.navigate("Login");
+            } else {
+                console.log("Signup failed:", data);
+            }
+        } catch (err) {
+            console.error("Error during signup:", err);
         }
     };
 
@@ -93,12 +120,11 @@ const SignUpScreen = () => {
                         numberOfLines={1}
                         onChangeText={setFullName}
                         onBlur={validateName}
-                        placeholderTextColor={
-                            fullNameError ? "red" : "gray"
+                        placeholderTextColor={fullNameError ? "red" : "gray"}
+                        style={
+                            fullNameError ? styles.errorBox : styles.inputBox
                         }
-                        style={fullNameError ? styles.errorBox : styles.inputBox}
-                    >
-                    </TextInput>
+                    ></TextInput>
                     {/* {fullNameError ? (<ErrorIcon styles={styles.errorIcon}/> ) : null} */}
                 </View>
                 <View style={styles.fieldContainer}>
@@ -108,14 +134,9 @@ const SignUpScreen = () => {
                         onBlur={validateEmail}
                         autoCapitalize="none"
                         keyboardType="email-address"
-                        placeholderTextColor={
-                            emailError ? "red" : "gray"
-                        }
+                        placeholderTextColor={emailError ? "red" : "gray"}
                         style={emailError ? styles.errorBox : styles.inputBox}
                     />
-                    {/* {emailError ? (
-                        <ErrorIcon styles={styles.errorIcon} />
-                    ) : null} */}
                 </View>
                 <View style={styles.fieldContainer}>
                     <TextInput
@@ -124,14 +145,11 @@ const SignUpScreen = () => {
                         onChangeText={setPassword}
                         onBlur={validatePassword}
                         autoCapitalize="none"
-                        placeholderTextColor={
-                            passwordError ? "red" : "gray"
+                        placeholderTextColor={passwordError ? "red" : "gray"}
+                        style={
+                            passwordError ? styles.errorBox : styles.inputBox
                         }
-                        style={passwordError ? styles.errorBox : styles.inputBox}
                     />
-                    {/* {passwordError ? (
-                        <ErrorIcon styles={styles.errorIcon} />
-                    ) : null} */}
                 </View>
                 <View style={styles.fieldContainer}>
                     <TextInput
@@ -143,11 +161,12 @@ const SignUpScreen = () => {
                         placeholderTextColor={
                             confirmPasswordError ? "red" : "gray"
                         }
-                        style={confirmPasswordError ? styles.errorBox : styles.inputBox}
+                        style={
+                            confirmPasswordError
+                                ? styles.errorBox
+                                : styles.inputBox
+                        }
                     />
-                    {/* {confirmPasswordError ? (
-                        <ErrorIcon styles={styles.errorIcon} />
-                    ) : null} */}
                 </View>
             </View>
             <TouchableOpacity
