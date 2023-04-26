@@ -98,7 +98,11 @@ const SignUpScreen = () => {
 
   const signUpUser = async (userName, password) => {
     try {
+<<<<<<< HEAD
       const response = await fetch("http://localhost:5000/api/signup", {
+=======
+      const response = await fetch("http://159.223.108.232/api/signup", {
+>>>>>>> 2df9f3af41bfc8dd2b516698afe71236b9439bf0
         method: "POST",
         headers: {
           "Content-Type": "application/json",
